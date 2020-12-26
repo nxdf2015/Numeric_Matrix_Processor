@@ -17,23 +17,26 @@ public class Main {
             matrix1.setRow(row,scanner.nextLine());
         }
 
-        String[] sizes2 = scanner.nextLine().split(" ");
+//        String[] sizes2 = scanner.nextLine().split(" ");
 
-        int rows2 = Integer.parseInt(sizes2[0]);
-        int cols2 = Integer.parseInt(sizes2[1]);
+//        int rows2 = Integer.parseInt(sizes2[0]);
+//        int cols2 = Integer.parseInt(sizes2[1]);
+//
+//        Matrix matrix2 = new Matrix(rows2, cols2);
+//
+//        for (int row = 0; row < rows2; row++){
+//            matrix2.setRow(row,scanner.nextLine());
+//        }
+//
+//        if (rows1 == rows2 && cols1 == cols2) {
+//            Matrix result = matrix1.add(matrix2);
+//            System.out.println(result);
+//        } else {
+//            System.out.println("ERROR");
+//        }
 
-        Matrix matrix2 = new Matrix(rows2, cols2);
-
-        for (int row = 0; row < rows2; row++){
-            matrix2.setRow(row,scanner.nextLine());
-        }
-
-        if (rows1 == rows2 && cols1 == cols2) {
-            Matrix result = matrix1.add(matrix2);
-            System.out.println(result);
-        } else {
-            System.out.println("ERROR");
-        }
+        int mult = scanner.nextInt();
+        System.out.println(matrix1.multiply(mult));
 
     }
 }

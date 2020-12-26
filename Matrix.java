@@ -57,4 +57,16 @@ public class Matrix implements Operations{
         }
         return result;
     }
+
+    @Override
+    public Matrix multiply(int a) {
+        Matrix result = new Matrix(rows, cols);
+        for(int row = 0; row < rows; row++){
+            for(int col = 0; col < cols; col++){
+                int value = a *  matrix[row][col];
+                result.setElement(row, col, value);
+            }
+        }
+        return result;
+    }
 }
