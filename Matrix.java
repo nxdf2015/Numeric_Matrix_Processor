@@ -101,7 +101,7 @@ public class Matrix implements Operations{
     }
 
     @Override
-    public Matrix multiply(int a) {
+    public Matrix multiply(double a) {
         Matrix result = new Matrix(rows, cols);
         for(int row = 0; row < rows; row++){
             for(int col = 0; col < cols; col++){
@@ -208,5 +208,17 @@ public class Matrix implements Operations{
             value += getElement(0, col) * Math.pow(-1, col + 2) * commatrice(0,col).det() ;
         }
         return value;
+    }
+
+    @Override
+    public Matrix inverse() {
+       double d = det();
+       Matrix t = new Matrix(rows, cols);
+       for(int row = 0; row < rows; row++){
+           for(int col = 0; col < cols; col++){
+               t.setElement(row,col,  Math.pow(-1, row + col + 2) * commatrice(row,col).det());
+           }
+       }
+       return t.transpose().multiply(1/d);
     }
 }

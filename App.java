@@ -15,6 +15,7 @@ public class App {
                 "3. Multiply matrices\n" +
                 "4. Transpose matrix\n" +
                 "5. Calculate a determinant\n" +
+                "6. Inverse matrix\n" +
                 "0. Exit\n" +
                 "Your choice:";
     }
@@ -91,6 +92,11 @@ public class App {
                 case 5:
                     m = readMatrix("matrix");
                     System.out.println(m.det());
+                    break;
+                case 6:
+                    m = readMatrix("matrix");
+                    result = m.inverse();
+                    break;
                 default:
                     System.exit(0);
 
