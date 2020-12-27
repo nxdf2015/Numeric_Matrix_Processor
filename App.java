@@ -13,7 +13,9 @@ public class App {
         return "1. Add matrices\n" +
                 "2. Multiply matrix by a constant\n" +
                 "3. Multiply matrices\n" +
-                "0. Exit";
+                "4. Transpose matrix\n" +
+                "0. Exit\n" +
+                "Your choice:";
     }
 
     private Matrix readMatrix(String label){
@@ -33,8 +35,9 @@ public class App {
     public void start(){
         while(true) {
             System.out.println(System.lineSeparator());
-            System.out.println(menu());
+            System.out.print(menu());
             int choice = Integer.parseInt(scanner.nextLine());
+            System.lineSeparator();
             Matrix m , n , result = null;
             int mult;
             switch (choice) {
@@ -59,6 +62,29 @@ public class App {
                         result = m.multiply(n);
                     } catch(IllegalArgumentException e){
                         System.out.println(e.getMessage());
+                    }
+                    break;
+                case 4:
+                    System.out.print("1. Main diagonal\n" +
+                            "2. Side diagonal\n" +
+                            "3. Vertical line\n" +
+                            "4. Horizontal line\n" +
+                            "Your choice:");
+                    choice = Integer.parseInt(scanner.nextLine());
+                    m = readMatrix("matrix");
+                    switch (choice) {
+                        case 1:
+                            result = m.transpose();
+                            break;
+                        case 2:
+                            result = m.sideTranspose();
+                            break;
+                        case 3:
+                            result = m.verticalTranspose();
+                            break;
+                        case 4:
+                            result = m.horizontalTranspose();
+
                     }
                     break;
                 default:

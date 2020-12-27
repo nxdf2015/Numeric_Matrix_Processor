@@ -18,6 +18,13 @@ public class Matrix implements Operations{
         this.cols = cols;
         matrix = new double[rows][cols];
     }
+
+    public Matrix(double[][] matrix){
+        this.rows = matrix.length;
+        this.cols = matrix[0].length;
+        this.matrix = matrix;
+    }
+
     public void setElement(int row, int col, double value) {
        matrix[row][col] = value;
     }
@@ -39,6 +46,33 @@ public class Matrix implements Operations{
             elements[col] = Double.parseDouble(temp[col]);
         }
         setRow(row,elements);
+    }
+
+    public double[] getColumn(int col){
+        double[] elements = new double[rows];
+        for(int i = 0; i < rows; i++){
+            elements[i] = getElement(i, col);
+        }
+        return elements;
+    }
+
+    public double[] getRow(int row){
+        double[] elements = new double[cols];
+        for(int col = 0; col <cols; col++){
+            elements[col] = getElement(row, col);
+        }
+        return elements;
+    }
+
+
+    public Matrix clone(){
+        return new Matrix(matrix);
+    }
+
+    public void setColumn(int col, double[] values){
+        for(int row = 0; row < rows; row++){
+            matrix[row][col] = values[row];
+        }
     }
 
     @Override
@@ -95,5 +129,54 @@ public class Matrix implements Operations{
             }
         }
         return result;
+    }
+
+    @Override
+    public Matrix transpose() {
+        Matrix t = new Matrix(cols,rows);
+        for (int row = 0; row < rows; row++){
+            for(int col = 0; col < cols; col++){
+
+                t.setElement(col, row, matrix[row][col]);
+            }
+        }
+        return t;
+    }
+
+    @Override
+    public Matrix sideTranspose() {
+        Matrix t = new Matrix(cols, rows);
+        for (int row = 0; row < rows; row++){
+            for(int col = 0; col < cols; col++){
+                t.setElement(col, row, matrix[rows - 1 - row][cols - 1 - col]);
+            }
+        }
+        return t;
+    }
+
+    @Override
+    public Matrix horizontalTranspose() {
+        Matrix t = this.clone();
+        int middle = rows/ 2;
+        double[] line;
+        for(int row = 0; row < middle; row++){
+            line = t.getRow(row);
+            t.setRow(row, t.getRow(rows - 1 - row));
+            t.setRow(rows - 1 - row , line);
+        }
+        return t;
+    }
+
+    @Override
+    public Matrix verticalTranspose() {
+        Matrix t = clone();
+        double[]  line;
+        int middle = cols / 2;
+        for(int col = 0; col < middle; col++) {
+            line = getColumn(col);
+            t.setColumn(col ,t.getColumn(cols - 1 - col));
+            t.setColumn(cols - 1 - col, line);
+        }
+        return t;
     }
 }
