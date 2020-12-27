@@ -8,4 +8,5 @@ public interface Operations {
     public Matrix sideTranspose();
     public Matrix horizontalTranspose();
     public Matrix verticalTranspose();
+    public double det();
 }

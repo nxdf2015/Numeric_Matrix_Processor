@@ -14,6 +14,7 @@ public class App {
                 "2. Multiply matrix by a constant\n" +
                 "3. Multiply matrices\n" +
                 "4. Transpose matrix\n" +
+                "5. Calculate a determinant\n" +
                 "0. Exit\n" +
                 "Your choice:";
     }
@@ -87,6 +88,9 @@ public class App {
 
                     }
                     break;
+                case 5:
+                    m = readMatrix("matrix");
+                    System.out.println(m.det());
                 default:
                     System.exit(0);
 

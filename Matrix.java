@@ -179,4 +179,34 @@ public class Matrix implements Operations{
         }
         return t;
     }
+
+    public Matrix commatrice(int row, int col) {
+        Matrix result = new Matrix(rows -1, cols - 1);
+        for(int i = 0; i < rows; i++){
+            if (i == row){
+                continue;
+            }
+            for(int j = 0; j < cols; j++){
+                if (j == col){
+                    continue;
+                }
+                int x = i > row ? i - 1 : i;
+                int y = j > col ? j - 1 : j;
+                result.setElement(x,y,matrix[i][j]);
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public double det() {
+        if (rows == 1 && cols == 1){
+            return matrix[0][0];
+        }
+        double value = 0;
+        for(int col = 0; col < cols; col++){
+            value += getElement(0, col) * Math.pow(-1, col + 2) * commatrice(0,col).det() ;
+        }
+        return value;
+    }
 }
